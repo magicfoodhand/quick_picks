@@ -14,7 +14,7 @@ import './App.css'
 import './application.css'
 
 const client = new ApolloClient({
-    link: new HttpLink({uri: '/api/graphql'}),
+    link: new HttpLink({uri: 'https://fast-lowlands-95206.herokuapp.com/graphql'}),
     cache: new InMemoryCache(),
 });
 
