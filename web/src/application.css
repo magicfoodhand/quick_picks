@@ -1,0 +1,187 @@
+html {
+    text-align: center;
+    margin: auto;
+    background: lightgray
+}
+
+html,body,.App {
+    min-height: 100vh;
+    height: 100%
+}
+
+h1,h2,h3,h4,h5,h6,body {
+    margin: 0
+}
+
+nav a {
+    display: block;
+    font-size: 2em;
+    text-align: center
+}
+
+.link-to-home {
+    display: block;
+    text-align: center
+}
+
+.link-to-home .logo,.link-to-home .title {
+    margin: 0
+}
+
+.link-to-home .title {
+    color: black
+}
+
+.link-to-home .logo {
+    display: inline-block;
+    padding: 0.1em;
+    font-size: 4em;
+    color: red;
+    border: solid 0.1em;
+    border-radius: 100%
+}
+
+.link-to-home:hover .logo {
+    background: lightgray
+}
+
+body {
+    text-align: initial;
+    display: inline-block;
+    max-width: 50em;
+    width: 100%
+}
+
+body div .App {
+    background: white;
+    padding: 1.0em;
+    border-left: solid 0.1em;
+    border-right: solid 0.1em
+}
+
+body div .App .title {
+    text-align: center
+}
+
+.App a {
+    text-decoration: none;
+    padding: 0.1em
+}
+
+.App a:hover {
+    text-decoration: underline
+}
+
+.Drawing {
+    text-align: center
+}
+
+.Drawing .Balls {
+    margin: 0;
+    padding: 0;
+    display: inline-flex
+}
+
+.Drawing .Balls li {
+    list-style: none;
+    border: solid 0.025em;
+    margin: 0.05em;
+    border-radius: 100%;
+    width: 1.2em;
+    font-size: 2.2em;
+    text-align: center;
+    box-shadow: inset -0.13em -0.13em 0.2em rgba(0,0,0,0.5);
+    background-image: -webkit-linear-gradient(-45deg, rgba(255,255,220,0.3) 0%, transparent 100%);
+    background-image: -moz-linear-gradient(-45deg, rgba(255,255,220,0.3) 0%, transparent 100%);
+    background-image: -o-linear-gradient(-45deg, rgba(255,255,220,0.3) 0%, transparent 100%);
+    background-image: -ms-linear-gradient(-45deg, rgba(255,255,220,0.3) 0%, transparent 100%)
+}
+
+.Drawing .Balls li.regular {
+    background: white
+}
+
+.Drawing .Balls li.pball {
+    background: red
+}
+
+.Drawing .Balls li.mball {
+    background: yellow
+}
+
+.DrawingTypes ul {
+    padding: 0
+}
+
+.DrawingTypes ul li {
+    list-style: none;
+    text-align: center
+}
+
+.DrawingTypes ul li a {
+    font-size: 1.5em
+}
+
+.Numbers ul {
+    padding: 0
+}
+
+.Numbers ul li {
+    display: inline-block;
+    list-style: none
+}
+
+.Numbers ul li ul li {
+    border: solid 0.025em;
+    border-radius: 100%;
+    height: 2.2em;
+    width: 2.2em;
+    font-size: 2.2em;
+    text-align: center;
+    box-shadow: inset -0.13em -0.13em 0.2em rgba(0,0,0,0.5);
+    background-image: -webkit-linear-gradient(-45deg, rgba(255,255,220,0.3) 0%, transparent 100%);
+    background-image: -moz-linear-gradient(-45deg, rgba(255,255,220,0.3) 0%, transparent 100%);
+    background-image: -o-linear-gradient(-45deg, rgba(255,255,220,0.3) 0%, transparent 100%);
+    background-image: -ms-linear-gradient(-45deg, rgba(255,255,220,0.3) 0%, transparent 100%)
+}
+
+.Numbers ul li ul li div {
+    padding: 0.5em
+}
+
+.QuickPicks {
+    text-align: center
+}
+
+.QuickPicks .logo {
+    display: inline-block;
+    padding: 0.1em;
+    font-size: 2em;
+    height: 3em;
+    width: 3em;
+    color: red;
+    border: solid 0.1em;
+    border-radius: 100%;
+    background: white;
+    box-shadow: inset -0.13em -0.13em 0.2em rgba(0,0,0,0.5);
+    background-image: -webkit-linear-gradient(-45deg, rgba(255,255,220,0.3) 0%, transparent 100%);
+    background-image: -moz-linear-gradient(-45deg, rgba(255,255,220,0.3) 0%, transparent 100%);
+    background-image: -o-linear-gradient(-45deg, rgba(255,255,220,0.3) 0%, transparent 100%);
+    background-image: -ms-linear-gradient(-45deg, rgba(255,255,220,0.3) 0%, transparent 100%)
+}
+
+.QuickPicks .logo:focus {
+    background: lightgray
+}
+
+.center {
+    text-align: center
+}
+
+.power_ball {
+    background: red
+}
+
+.mega_ball {
+    background: yellow
+}

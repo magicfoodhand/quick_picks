@@ -1,46 +1,55 @@
 import React, { Component } from 'react';
-import './App.css';
-import ApolloClient from 'apollo-boost';
-import {ApolloProvider} from "react-apollo";
-import {
-    BrowserRouter as Router, Switch, Route, Link
-} from 'react-router-dom'
+import ReactDOM from 'react-dom';
+import { Router, Route, Link } from 'react-router-dom'
+import { ApolloClient, HttpLink, InMemoryCache } from 'apollo-boost';
+import { ApolloProvider} from 'react-apollo';
+import createBrowserHistory from 'history/createBrowserHistory'
 
-import Home from './Home/Home'
-import Users from './Users/Users'
-import NewUser from "./NewUser/NewUser";
+import Home from './Home'
+import DrawingType from './DrawingType'
+import DrawingTypes from './DrawingTypes'
+import QuickPicks from './QuickPicks'
+
+import './App.css'
+import './application.css'
 
 const client = new ApolloClient({
-    uri: '/api/graphql'
+    link: new HttpLink({uri: '/api/graphql'}),
+    cache: new InMemoryCache(),
 });
 
-let NotFound = () => (
-    <div>
-      <h1>Sorry this isn't what you're looking for.</h1>
-    </div>
-)
+const history = createBrowserHistory();
 
-class App extends Component {
-  render() {
-    return (
-      <Router>
-          <ApolloProvider client={client}>
-              <nav>
-                  <ul className='menu'>
-                      <li><Link to="/">Home</Link></li>
-                      <li><Link to="/users">Users</Link></li>
-                  </ul>
-              </nav>
-              <Switch>
-                  <Route exact path="/" component={Home}/>
-                  <Route exact path="/users" component={Users}/>
-                  <Route exact path="/users/new" component={NewUser}/>
-                  <Route path="/" component={NotFound}/>
-              </Switch>
-          </ApolloProvider>
-      </Router>
-    );
-  }
+export default class App extends Component {
+    render() {
+        return (
+            <ApolloProvider client={client}>
+                <Router history={history}>
+                    <div className="App">
+                        <Link to="/" className="link-to-home" title="Home">
+                            <h1 className="logo">QP</h1>
+                        </Link>
+                        <div>
+                            <nav>
+                                <Link to="/random_draw" title="QuickPicks">Random Draw</Link>
+                                <Link to="/lotteries" title="Lotteries">Lotteries</Link>
+                            </nav>
+                            <Route exact path="/" component={Home}/>
+                            <Route exact path="/random_draw" component={QuickPicks}/>
+                            <Route exact path="/lotteries" component={DrawingTypes}/>
+                            <Route path="/lotteries/:abbr" component={DrawingType}/>
+                        </div>
+                    </div>
+                </Router>
+            </ApolloProvider>
+        );
+    }
 }
 
-export default App;
+
+document.addEventListener('DOMContentLoaded', () => {
+    ReactDOM.render(
+        <App/>,
+        document.body.appendChild(document.createElement('div')),
+    )
+});

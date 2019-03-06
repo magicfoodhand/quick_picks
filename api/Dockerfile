@@ -20,7 +20,7 @@ FROM openjdk:11.0.2-jre-stretch
 WORKDIR /kline-api
 
 # copy over the built artifact from the maven image
-COPY --from=maven target/kline-api-*jar-with-dependencies.jar ./kline-api.jar
+COPY --from=maven target/quick-picks-api-*jar-with-dependencies.jar ./quick-picks-api.jar
 
 # set the startup command to run your binary
-CMD ["java", "-jar", "kline-api.jar"]
+CMD ["java", "-jar", "quick-picks-api.jar"]
