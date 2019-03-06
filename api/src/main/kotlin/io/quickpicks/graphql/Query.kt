@@ -3,7 +3,7 @@ package io.quickpicks.graphql
 import com.expedia.graphql.annotations.GraphQLDescription
 import io.quickpicks.db.Persistence
 
-class Query(private val persistence: Persistence) {
+class Query(private val persistence: Persistence) : Authenticated() {
 
     @GraphQLDescription("Get Latest Drawing")
     fun latestDrawing(
@@ -12,8 +12,9 @@ class Query(private val persistence: Persistence) {
 
     @GraphQLDescription("All Drawings of a certain type")
     fun drawings(
-        @GraphQLDescription("The abbreviation for this Drawing Type") abbr: String
-    ) = FilterableList(persistence.drawings(abbr))
+        @GraphQLDescription("The abbreviation for this Drawing Type") abbr: String,
+        @GraphQLDescription("Auth Token") authToken: String
+    ) = ifAuthenticated(authToken) { FilterableList(persistence.drawings(abbr)) }
 
     @GraphQLDescription("All Ball Types")
     fun ballTypes() = persistence.ballTypes()

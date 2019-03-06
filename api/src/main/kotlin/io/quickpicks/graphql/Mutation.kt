@@ -1,23 +1,14 @@
 package io.quickpicks.graphql
 
 import com.expedia.graphql.annotations.GraphQLDescription
-import com.google.common.base.Supplier
-import com.google.common.base.Suppliers
 import io.quickpicks.api.NewDrawing
 import io.quickpicks.db.Persistence
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import java.util.*
 import java.util.concurrent.CompletableFuture
-import java.util.concurrent.TimeUnit
 
-class Mutation(private val persistence: Persistence) {
-
-    private val authToken: Supplier<String> = Suppliers.memoizeWithExpiration({
-        val newToken = "${UUID.randomUUID()}-${UUID.randomUUID()}"
-        LOG.info("Current token {}", newToken) // TODO: Use real authentication
-        newToken
-    }, 30, TimeUnit.MINUTES)
+class Mutation(private val persistence: Persistence) : Authenticated() {
 
     @GraphQLDescription("Create Ball Type")
     fun createBallType(
@@ -46,12 +37,6 @@ class Mutation(private val persistence: Persistence) {
         @GraphQLDescription("New Drawing") drawing: NewDrawing,
         @GraphQLDescription("Auth Token") authToken: String
     ) : UUID? = ifAuthenticated(authToken) { createDrawing(drawing).join() }
-
-    private fun <R> ifAuthenticated(authToken: String, action: () -> R) : R? {
-        return if(this.authToken.get() == authToken)
-            action()
-        else null
-    }
 
     private fun createDrawing(drawing: NewDrawing) : CompletableFuture<UUID?> {
         val (drawDate, drawingTypeId, specialBallTypeId, ballTypeId, special, jackpot, multiplier, balls) = drawing
