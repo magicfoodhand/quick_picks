@@ -48,8 +48,5 @@ export default class App extends Component {
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    ReactDOM.render(
-        <App/>,
-        document.body.appendChild(document.createElement('div')),
-    )
+    ReactDOM.render(<App />, document.getElementById('root'));
 });
