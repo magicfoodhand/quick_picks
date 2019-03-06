@@ -1,0 +1,1 @@
+web: java -jar target/quick-picks-api-*jar-with-dependencies.jar
